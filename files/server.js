@@ -272,10 +272,14 @@ app.get("*", (req, res) => {
 });
 
 // ─── Start Server ────────────────────────────────────────────
-app.listen(PORT, () => {
-  console.log(`\n🤖 Bazaar Bot is live at http://localhost:${PORT}`);
-  console.log(`📦 Products in database: ${Object.keys(products).length} across 9 categories`);
-  console.log(`🥦 Agmarknet (mandi prices): ✅ ACTIVE — data.gov.in`);
-  console.log(`🛒 Open Food Facts (groceries): ✅ ACTIVE — no key required`);
-  console.log(`\nPress Ctrl+C to stop the server.\n`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`\n🤖 Bazaar Bot is live at http://localhost:${PORT}`);
+    console.log(`📦 Products in database: ${Object.keys(products).length} across 9 categories`);
+    console.log(`🥦 Agmarknet (mandi prices): ✅ ACTIVE — data.gov.in`);
+    console.log(`🛒 Open Food Facts (groceries): ✅ ACTIVE — no key required`);
+    console.log(`\nPress Ctrl+C to stop the server.\n`);
+  });
+}
+
+module.exports = app;
